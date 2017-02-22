@@ -1,6 +1,7 @@
 # MUSA-620-Week-6
 
 [Postgres / PostGIS install](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
+
 [Download](https://www.enterprisedb.com/software-downloads-postgres)
 
 
