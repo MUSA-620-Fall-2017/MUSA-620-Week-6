@@ -2,7 +2,7 @@
 
 Spatial databases ([notes](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-6/blob/master/week-6-spatial-databases.pptx))
 
-![Distance from nearest SEPTA station](https://blueshift.io/septa-station-distance.png "Distance from nearest SEPTA station")
+![Distance from nearest SEPTA station](https://blueshift.io/septa-distance.png "Distance from nearest SEPTA station")
 
 
 
@@ -14,9 +14,13 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 
 ### Task:
 
-Using the last 10 years of data from the [[FARS] database](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) and [Philadelphia's road network](https://www.opendataphilly.org/dataset/street-centerlines), investigate the geospatial distribution of fatal vehicle crashes in Philadelphia and whether alcohol was a contributing factor.
+**Using the last 10 years of data from the [[FARS] database](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) and [Philadelphia's road network](https://www.opendataphilly.org/dataset/street-centerlines), investigate the geospatial distribution of fatal vehicle crashes in Philadelphia and whether alcohol was a contributing factor.**
 
-### Deliverable: A map of Philadelphia's road network that displays the number of fatal accidents on each street (visualized as line width) as well as whether alcohol was a contributing factors (visualized as color). Please also include all SQL queries used to construct the map.
+
+### Deliverable:
+
+**A map of Philadelphia's road network that displays the number of fatal accidents on each street (visualized as line width) as well as whether alcohol was a contributing factors (visualized as color). Please also include all SQL queries used to construct the map.**
+
 
 To construct this map, you will need to create a PostGIS database with four tables: one for the Philadelphia road network and one for each of the tables in the FARS database (accident, vehicle, and person). The FARS accident table contains the coordinates of each accident and should be imported as a spatial table (with point geometry). The other tables (vehicle and person) do not contain geospatial data, and should be imported as standard data tables.
 
