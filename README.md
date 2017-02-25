@@ -14,21 +14,23 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 
 ### Task:
 
-**Using the last 10 years of data from the [[FARS] database](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) and [Philadelphia's road network](https://www.opendataphilly.org/dataset/street-centerlines), investigate the geospatial distribution of fatal vehicle crashes in Philadelphia and whether alcohol was a contributing factor.**
+**Using the last 10 years of data from the [FARS database](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) and [Philadelphia's road network](https://www.opendataphilly.org/dataset/street-centerlines), investigate the geospatial distribution of fatal vehicle crashes in Philadelphia and whether alcohol was a contributing factor.**
 
 
 ### Deliverable:
 
-**A map of Philadelphia's road network that displays the number of fatal accidents on each street (visualized as line width) as well as whether alcohol was a contributing factors (visualized as color). Please also include all SQL queries used to construct the map.**
+**A map of Philadelphia's road network that displays the number of fatal accidents on each street segment (visualized as line width) and whether alcohol was a contributing factor (visualized using color). Please also include all SQL queries used to construct the map.**
 
 
-To construct this map, you will need to create a PostGIS database with four tables: one for the Philadelphia road network and one for each of the tables in the FARS database (accident, vehicle, and person). The FARS accident table contains the coordinates of each accident and should be imported as a spatial table (with point geometry). The other tables (vehicle and person) do not contain geospatial data, and should be imported as standard data tables.
+To construct this map, you will need to create a PostGIS database with four tables: one for the Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines)) and one for each of the tables in the FARS database: accident-level, vehicle-level, and person-level ([download clean, standardized versions of these tables here](http://metrocosm.com/get-the-data/#accidents)).
 
-To combine this data into the right format, you should construct three SQL queries. You can run these queries in PGAdmin, or if you prefer, in Qgis.
+The FARS accident table contains the coordinates of each accident and should be imported as a spatial table (with point geometry). The other FARS tables (vehicle and person) do not contain geospatial data, and should be imported as standard data tables.
 
-- The information you need from FARS is the location of the accident (in the accident table) and its contributing factors (in the person table). Construct a join query to combine this data together into a *view* (a temporary table in your database).
+You can pull this data together by constructing the following three SQL queries. The queries can be run in PGAdmin, or if you prefer, in Qgis.
 
-- The next step is create a new view that also contains the street on which the accident happened. You can do this using a spatial join query. For each point in the view you just created, join the id of the nearest street segment. You should now have a new view that contains the coordinates of each accident, that accident's contributing factors, and the id of the street segment on which it occured.
+- The information you need from FARS is the location of the accident (in the accident table) and its contributing factors (in the person table). Construct a query to join this data together into a *view* (a temporary table in your database).
+
+- The next step is to create a another view, which also contains the street on which the accident happened. You can do this using a spatial join query. For each point in the view you just created, join the id of the nearest street segment. You should now have a new view that contains: the coordinates of each accident, that accident's contributing factors, and the id of the street segment on which it occured.
 
 - The last SQL query should aggregate the accident data for each street segment and join it to the road network table. Load the resulting table into ArcMap.
 
@@ -44,7 +46,7 @@ Use ArcMap (or Qgis) to style the layer. Vary the line width according number of
 
 [Philadelphia road network](https://www.opendataphilly.org/dataset/street-centerlines)
 
-[Download a cleaned & standardized version of the FARS data from here](http://metrocosm.com/get-the-data/#accidents)
+[FARS database: cleaned & standardized tables for download](http://metrocosm.com/get-the-data/#accidents)
 
 [FARS database: original source & documentation](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
 
