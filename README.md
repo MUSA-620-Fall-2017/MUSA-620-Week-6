@@ -2,8 +2,8 @@
 
 Spatial databases ([notes](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-6/blob/master/week-6-spatial-databases.pptx))
 
-![Distance from nearest SEPTA station](https://blueshift.io/septa-distance.png "Distance from nearest SEPTA station")
-
+![Distance from nearest SEPTA station](https://blueshift.io/distance-from-septa.png "Distance from nearest SEPTA station")
+Distance from each building in Philadelpha to the nearest SEPTA station
 
 
 ## Assignment
