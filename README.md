@@ -21,8 +21,8 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 ### Deliverable:
 
 **A map of Philadelphia's road network that displays:**
--- **the number of fatal accidents on each street segment (visualized as line width) and**
--- **whether alcohol was a contributing factor (visualized using color).**
+- **the number of fatal accidents on each street segment (visualized as line width) and**
+- **whether alcohol was a contributing factor (visualized using color).**
 
 **Please also include all SQL queries and any code used to construct the map.**
 
