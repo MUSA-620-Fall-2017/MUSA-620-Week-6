@@ -6,6 +6,7 @@ Spatial databases ([notes](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-6
 Distance from each building in Philadelpha to the nearest SEPTA station
 
 
+
 ## Assignment
 
 This assignment is **required**. You may turn it in by email (galkamaxd at gmail) or in person at class.
@@ -19,7 +20,11 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 
 ### Deliverable:
 
-**A map of Philadelphia's road network that displays the number of fatal accidents on each street segment (visualized as line width) and whether alcohol was a contributing factor (visualized using color). Please also include all SQL queries used to construct the map.**
+**A map of Philadelphia's road network that displays:**
+-- **the number of fatal accidents on each street segment (visualized as line width) and**
+-- **whether alcohol was a contributing factor (visualized using color).**
+
+**Please also include all SQL queries and any code used to construct the map.**
 
 
 To construct this map, you will need to create a PostGIS database with four tables: one for the Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines)) and one for each of the tables in the FARS database: accident-level, vehicle-level, and person-level ([download clean, standardized versions of these tables here](http://metrocosm.com/get-the-data/#accidents)).
