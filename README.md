@@ -52,7 +52,7 @@ You can pull this data together by constructing the following three SQL queries.
 
 1. Use the "ST_CASE" field to join the accident table with the vehicle table, creating a single table with the coordinates of each accident as well as information about alcohol involvement (note: if the driver was drunk ("DR_DRINK" = 1) in *any* of the vehicles involved in the accident, alcohol was a factor). Save this table as a view.
 
-2. Create another spatial query to join the accident data to the Philadelphia road network. This query will contain several pieces. Similar to the example we did in class, it should join each accident to the nearest street segment. The fields in your SELECT clause should include a count of the number of number of accidents, as well as a count of the number of accidents in which alcohol was a factor.
+2. Create another spatial query to join the accident data to the Philadelphia road network. This query will contain several pieces. Similar to the [example we did in class](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-7/blob/master/README.md), this query should join each accident to the nearest street segment. The fields in your SELECT clause should include a count of the number of accidents, as well as a count of the number of accidents in which alcohol was a factor.
 
 
 Use ArcMap (or Qgis) to style the layer. Vary the line width according number of accidents. Vary the color according to the % of accidents where alcohol was a contributing factor.
