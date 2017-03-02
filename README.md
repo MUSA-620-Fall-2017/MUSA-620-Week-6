@@ -21,23 +21,39 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 ### Deliverable:
 
 **A map of Philadelphia's road network that displays:**
-- **the number of fatal accidents on each street segment (visualized as line width) and**
-- **whether alcohol was a contributing factor (visualized using color).**
+1. **the number of fatal accidents on each street segment (visualized as line width) and**
+2. **whether alcohol was a contributing factor (visualized using color).**
 
 **Please also include all SQL queries and any code used to construct the map.**
 
 
-To construct this map, you will need to create a PostGIS database with four tables: one for the Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines)) and one for each of the tables in the FARS database: accident-level, vehicle-level, and person-level ([download clean, standardized versions of these tables here](http://metrocosm.com/get-the-data/#accidents)).
+FARS (Fatality Analysis Reporting System) is a relational database containing a record of every fatal traffic accident in the U.S. back to 1975. The database is made up of three primary tables.
+- Accident table: information about the accident itelf (where it took place, weather conditions, time and date, etc).
+- Vehicle table: information about the vehicles involved in the accidents (make/model, estimated speed at time of impact, damage, etc).
+- Person table:  information about the people involved in the accidents (demographics, which seat of the car they were in, whether or not they were injured, etc).
 
-The FARS accident table contains the coordinates of each accident and should be imported as a spatial table (with point geometry). The other FARS tables (vehicle and person) do not contain geospatial data, and should be imported as standard data tables.
+We will be using data from the period 2004-2013. For the purposes of this project, we will need the accident locations ("latitude", "longitud" columns in the accident table) and a record of whether alcohol was a factor ("DR_DRINK" column in the vehicle table).
+
+([Download clean, standardized versions of these tables here](http://metrocosm.com/get-the-data/#accidents)).
+
+
+Before working with the data, you will need to create a PostGIS database with four tables:
+
+Two spatial tables:
+1. Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines))
+2. FARS accident table -- use the "latitude" and "longitud" columns to create a point layer, then import to PostGIS.
+
+Three attribute tables (no spatial component):
+3. FARS vehicle table
+4. FARS person table (we will not be using this table, but I include it here for good measure)
+
 
 You can pull this data together by constructing the following three SQL queries. The queries can be run in PGAdmin, or if you prefer, in Qgis.
 
-- The information you need from FARS is the location of the accident (in the accident table) and its contributing factors (in the person table). Construct a query to join this data together into a *view* (a temporary table in your database).
+1. Use the "ST_CASE" field to join the accident table with the vehicle table, creating a single table with the coordinates of each accident as well as information about alcohol involvement (note: if the driver was drunk ("DR_DRINK" = 1) in *any* of the vehicles involved in the accident, alcohol was a factor). Save this table as a view.
 
-- The next step is to create a another view, which also contains the street on which the accident happened. You can do this using a spatial join query. For each point in the view you just created, join the id of the nearest street segment. You should now have a new view that contains: the coordinates of each accident, that accident's contributing factors, and the id of the street segment on which it occured.
+2. Create another spatial query to join the accident data to the Philadelphia road network. This query will contain several pieces. Similar to the example we did in class, it should join each accident to the nearest street segment. The fields in your SELECT clause should include a count of the number of number of accidents, as well as a count of the number of accidents in which alcohol was a factor.
 
-- The last SQL query should aggregate the accident data for each street segment and join it to the road network table. Load the resulting table into ArcMap.
 
 Use ArcMap (or Qgis) to style the layer. Vary the line width according number of accidents. Vary the color according to the % of accidents where alcohol was a contributing factor.
 
