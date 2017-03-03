@@ -41,13 +41,15 @@ We will be using data from the period 2004-2013. For the purposes of this projec
 ### Set up PostGIS Database
 
 First, you will need to create a PostGIS database with three spatial tables:
+
 1. Philadelphia city borders ([download shapefile here](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-6/blob/master/philadelphia_borders.zip))
 2. Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines))
 3. FARS accident table -- use the "latitude" and "longitud" columns to create a point layer, then import to PostGIS.
 
-We will not be using these tables, but you may want to import tham anyway so you have them avaialable to work with FARS in the future.
-4. FARS vehicle table
-5. FARS person table
+We will not be using the two tables below, but you may want to import tham anyway so you have them avaialable to work with FARS in the future.
+
+- FARS vehicle table
+- FARS person table
 
 
 ### PostGIS Queries
