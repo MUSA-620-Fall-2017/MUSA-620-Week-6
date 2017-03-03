@@ -24,7 +24,7 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 
 **Please also include all SQL queries and any code used to construct the map.**
 
-![Distance from nearest SEPTA station](https://blueshift.io/philly-accidents.png "Distance from nearest SEPTA station")
+![Fatal accidents in Philadelphia](https://blueshift.io/philly-accidents-2.png "Fatal accidents in Philadelphia")
 
 #### FARS Database
 
@@ -40,7 +40,7 @@ We will be using data from the period 2004-2013. For the purposes of this projec
 
 #### Set up PostGIS Database
 
-Before working with the data, you will need to create a PostGIS database with three spatial tables:
+First, you will need to create a PostGIS database with three spatial tables:
 1. Philadelphia city borders ([download shapefile here](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-6/blob/master/philadelphia_borders.zip))
 2. Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines))
 3. FARS accident table -- use the "latitude" and "longitud" columns to create a point layer, then import to PostGIS.
@@ -79,6 +79,9 @@ Save this table as a new view.
   GROUP BY ???
 
 Export the results as a QGIS layer, and save it as a shapefile.
+
+
+#### Visualize the Results
 
 Use ArcMap or QGIS to visualize the data. [This video](https://www.youtube.com/watch?v=wpracFy4rVE) shows how to style the layer in QGIS: varying the line width and color according to the number of accidents. 
 
