@@ -24,7 +24,7 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 
 **Please also include all SQL queries and any code used to construct the map.**
 
-![Fatal accidents in Philadelphia](https://blueshift.io/philly-accidents-2.png "Fatal accidents in Philadelphia")
+![Fatal accidents in Philadelphia](https://blueshift.io/philly-accidents-2.png "Fatal accidents in Philadelphia" | width=1013)
 
 #### FARS Database
 
