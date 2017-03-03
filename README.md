@@ -26,7 +26,7 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 
 ![Fatal accidents in Philadelphia](https://blueshift.io/philly-accidents.png "Fatal accidents in Philadelphia")
 
-#### FARS Database
+### FARS Database
 
 The **FARS (Fatality Analysis Reporting System)** is a relational database containing a record of every fatal traffic accident in the U.S. back to 1975. The database is made up of three primary tables.
 - Accident table: information about the accident itelf (where it took place, weather conditions, time and date, etc).
@@ -38,7 +38,7 @@ We will be using data from the period 2004-2013. For the purposes of this projec
 ([Download clean, standardized versions of the FARS tables here](http://metrocosm.com/get-the-data/#accidents)).
 
 
-#### Set up PostGIS Database
+### Set up PostGIS Database
 
 First, you will need to create a PostGIS database with three spatial tables:
 1. Philadelphia city borders ([download shapefile here](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-6/blob/master/philadelphia_borders.zip))
@@ -50,7 +50,7 @@ We will not be using these tables, but you may want to import tham anyway so you
 5. FARS person table
 
 
-#### PostGIS Queries
+### PostGIS Queries
 
 You can pull this data together by constructing the following three SQL queries.
 
@@ -81,7 +81,7 @@ You can pull this data together by constructing the following three SQL queries.
   Export the results as a QGIS layer, and save it as a shapefile.
 
 
-#### Visualize the Results
+### Visualize the Results
 
 Use ArcMap or QGIS to visualize the data. [This video](https://www.youtube.com/watch?v=wpracFy4rVE) shows how to style the layer in QGIS: varying the line width and color according to the number of accidents. 
 
