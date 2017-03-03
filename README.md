@@ -15,73 +15,87 @@ This assignment is **required**. You may turn it in by email (galkamaxd at gmail
 
 ### Task:
 
-**Using the last 10 years of data from the [FARS database](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) and [Philadelphia's road network](https://www.opendataphilly.org/dataset/street-centerlines), investigate the geospatial distribution of fatal vehicle crashes in Philadelphia and whether alcohol was a contributing factor.**
+**Using the last 10 years of data from the [FARS database](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) and [Philadelphia's road network](https://www.opendataphilly.org/dataset/street-centerlines), investigate the geospatial distribution of fatal vehicle crashes in Philadelphia ~~and whether alcohol was a contributing factor.~~**
 
 
 ### Deliverable:
 
-**A map of Philadelphia's road network that displays:**
-1. **the number of fatal accidents on each street segment (visualized as line width) and**
-2. **whether alcohol was a contributing factor (visualized using color).**
+**A map of Philadelphia's road network that displays the number of fatal accidents on each street segment**
 
 **Please also include all SQL queries and any code used to construct the map.**
 
+![Distance from nearest SEPTA station](https://blueshift.io/philly-accidents.png "Distance from nearest SEPTA station")
 
-*FARS (Fatality Analysis Reporting System)* is a relational database containing a record of every fatal traffic accident in the U.S. back to 1975. The database is made up of three primary tables.
+#### FARS Database
+
+The **FARS (Fatality Analysis Reporting System)** is a relational database containing a record of every fatal traffic accident in the U.S. back to 1975. The database is made up of three primary tables.
 - Accident table: information about the accident itelf (where it took place, weather conditions, time and date, etc).
 - Vehicle table: information about the vehicles involved in the accidents (make/model, estimated speed at time of impact, damage, etc).
 - Person table:  information about the people involved in the accidents (demographics, which seat of the car they were in, whether or not they were injured, etc).
 
-We will be using data from the period 2004-2013. For the purposes of this project, we will need the accident locations ("latitude", "longitud" columns in the accident table) and a record of whether alcohol was a factor ("DR_DRINK" column in the vehicle table).
+We will be using data from the period 2004-2013. For the purposes of this project, only the accident table is needed.
 
-([Download clean, standardized versions of these tables here](http://metrocosm.com/get-the-data/#accidents)).
-
-
-
-Before working with the data, you will need to create a PostGIS database with four tables:
-
-Two spatial tables:
-1. Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines))
-2. FARS accident table -- use the "latitude" and "longitud" columns to create a point layer, then import to PostGIS.
-
-Two attribute tables (no spatial component):
-3. FARS vehicle table
-4. FARS person table (we will not be using this table, but I include it here for good measure)
+([Download clean, standardized versions of the FARS tables here](http://metrocosm.com/get-the-data/#accidents)).
 
 
-You can pull this data together by constructing the following three SQL queries. The queries can be run in PGAdmin, or if you prefer, in Qgis.
+#### Set up PostGIS Database
 
-1. Use the "ST_CASE" field to join the accident table with the vehicle table, creating a single table with the coordinates of each accident as well as information about alcohol involvement (note: if the driver was drunk ("DR_DRINK" = 1) in *any* of the vehicles involved in the accident, alcohol was a factor). Save this table as a view.
+Before working with the data, you will need to create a PostGIS database with three spatial tables:
+1. Philadelphia city borders ([download shapefile here](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-6/blob/master/philadelphia_borders.zip))
+2. Philadelphia road network ([download shapefile here](https://www.opendataphilly.org/dataset/street-centerlines))
+3. FARS accident table -- use the "latitude" and "longitud" columns to create a point layer, then import to PostGIS.
 
-2. Use a spatial join query to find the corresponding street segment for each accident. This query will be similar to the [example we did in class](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-7/blob/master/README.md), finding the nearest street segment for each point in the view you created in the previous step. At a minimum, the results should contain four columns: id, geom, DR_DRINK, and the id of the nearest street segment. Save the results as a view. 
+We will not be using these tables, but you may want to import tham anyway so you have them avaialable to work with FARS in the future.
+4. FARS vehicle table
+5. FARS person table
 
-3. The final query should be a left join, to combine the accident data with the Philadelphia street network. The fields in your SELECT clause should include a count of the number of accidents, as well as a count of the number of accidents in which alcohol was a factor.
 
+#### PostGIS Queries
 
-Use ArcMap (or Qgis) to style the layer. Vary the line width according number of accidents. Vary the color according to the % of accidents where alcohol was a contributing factor.
+You can pull this data together by constructing the following three SQL queries.
 
+1. **Remove all accidents that did not happen in Philadelphia.** You can do this by running a spatial join query of this form:
+
+  SELECT ???
+  FROM ???
+  WHERE ST_WITHIN(???)
+
+Save this table as a view (or export the results as a layer and reimport it into your database as a new table).
+
+2. **Match each accident to a street segment.** This should be a spatial join query, similar to the [example we did in class to find the nearest SEPTA station](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-7/blob/master/README.md). In this case, you are finding the nearest street segment for each point. The result should be the same as the table you created in the last step with one additional column, the nearest street id.
+
+  SELECT DISTINCT ON ???
+  FROM ???
+  ORDER BY ???
+
+Save this table as a new view.
+
+3. **Join the accident data to the Philly road network** The final query should be a left join, to combine the table you created in the last step with the Philadelphia street network. 
+
+  SELECT ??? SUM(your_accident_table.&#42;) as num_accidents, ???
+  FROM ???
+  LEFT JOIN ???
+  ON ???
+  GROUP BY ???
+
+Export the results as a QGIS layer, and save it as a shapefile.
+
+Use ArcMap or QGIS to style the layer. The video below shows how to vary the line width and color according to the number of accidents. 
+
+[![Styling street layer in QGIS](https://img.youtube.com/vi/wpracFy4rVE/0.jpg)](https://www.youtube.com/watch?v=wpracFy4rVE)
 
 
 ### Useful Links
 
 [Postgres / PostGIS](https://www.enterprisedb.com/software-downloads-postgres)
 
-[QGIS: for importing data to PostGIS](http://www.qgis.org/en/site/)
+[QGIS](http://www.qgis.org/en/site/)
 
 [Philadelphia road network](https://www.opendataphilly.org/dataset/street-centerlines)
 
 [FARS database: cleaned & standardized tables for download](http://metrocosm.com/get-the-data/#accidents)
 
 [FARS database: original source & documentation](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
-
-[DVRPC Rail Station](https://www.opendataphilly.org/dataset/dvrpc-passenger-rail)
-
-
-
-
-
-
-
 
 
 
