@@ -93,7 +93,7 @@ You can pull this data together by constructing the following three SQL queries.
 
 ### Visualize the Results
 
-Use ArcMap or QGIS to visualize the data. [This video](https://www.youtube.com/watch?v=wpracFy4rVE) shows how to style the layer in QGIS: varying the line width and color according to the number of accidents. 
+Use ArcMap or QGIS to visualize the data. [This video](https://www.youtube.com/watch?v=wpracFy4rVE) shows how to style the layer in QGIS: varying the line width and color according to the number of accidents (your colors do not have to match mine).
 
 
 ### Useful Links
