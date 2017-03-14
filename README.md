@@ -64,7 +64,7 @@ You can pull this data together by constructing the following three SQL queries.
     
         WHERE ST_WITHIN(???)
 
-  Save this table as a view (or export the results as a layer and reimport it into your database as a new table).
+  ~~Save this table as a view (or e~~Export the results as a layer and reimport it into your database as a new table~~)~~. Saving the table as a view will also work, but it will be much slower. Every time you reference a view, it has to be rerun from scratch. 
 
 2. **Match each accident to a street segment.** This should be a spatial join query, similar to the [example we did in class to find the nearest SEPTA station](https://github.com/MUSA-620-Fall-2017/MUSA-620-Week-7/blob/master/README.md). In this case, you are finding the nearest street segment for each point. The result should be the same as the table you created in the last step with one additional column, the nearest street id.
 
@@ -78,7 +78,7 @@ You can pull this data together by constructing the following three SQL queries.
 
 3. **Join the accident data to the Philly road network** The final query should be a left join, to combine the table you created in the last step with the Philadelphia street network. 
 
-        SELECT ???, SUM(your_accident_table.&#42;) as num_accidents, ???
+        SELECT ???, SUM( your_accident_table.* ) as num_accidents, ???
         
         FROM ???
         
