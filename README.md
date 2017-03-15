@@ -78,7 +78,7 @@ You can pull this data together by constructing the following three SQL queries.
 
 3. **Join the accident data to the Philly road network** The final query should be a left join, to combine the table you created in the last step with the Philadelphia street network. 
 
-        SELECT ???, SUM( your_accident_table.* ) as num_accidents, ???
+        SELECT ???, COUNT( your_accident_table.* ) as num_accidents, ???
         
         FROM ???
         
